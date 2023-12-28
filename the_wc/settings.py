@@ -7,6 +7,7 @@ if os.path.isfile("env.py"):
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,6 +26,12 @@ ALLOWED_HOSTS = [
     ".herokuapp.com",
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    "http://127.0.0.1",
+    "https://*.gitpod.io",
+    "https://*.herokuapp.com"
+]
+
 
 # Application definition
 
@@ -36,7 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    #Apps
+    # Extra packages
+    'django_summernote',
+
+    # Apps
     'thewcwebpage',
 ]
 
@@ -55,7 +65,7 @@ ROOT_URLCONF = 'the_wc.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
